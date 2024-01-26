@@ -120,6 +120,21 @@ class Sam(nn.Module):
                 input_size=image_record["image"].shape[-2:],
                 original_size=image_record["original_size"],
             )
+            image_record_point_coords = image_record.get("point_coords", None)
+            image_record_point_labels = image_record.get("point_labels", None)
+            image_record_boxes = image_record.get("boxes", None)
+            image_record_mask_inputs = image_record.get("mask_inputs", None)
+            print(f"{image_record_point_coords=}")
+            print(f"{image_record_point_labels=}")
+            print(f"{image_record_boxes=}")
+            print(f"{image_record_mask_inputs=}")
+            print(f"{curr_embedding.shape=}")
+            print(f"{sparse_embeddings.shape=}")
+            print(f"{dense_embeddings.shape=}")
+            print(f"{low_res_masks.shape=}")
+            print(f"{iou_predictions.shape=}")
+            print(f"{masks.shape=}")
+
             masks = masks > self.mask_threshold
             outputs.append(
                 {
